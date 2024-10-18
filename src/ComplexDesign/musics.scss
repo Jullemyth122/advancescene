@@ -1,0 +1,119 @@
+.music-comp {
+    // display: flex;
+    // align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .music-show {
+        display: grid;
+        gap: 5px;
+        width: 50vw;
+
+        img {
+            height: 350px;
+        }
+
+        .pre-text {
+            height: 175px;
+            width: 100%;
+        }
+
+        .pre-audio {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 5px;
+
+            canvas {
+                width: 100%;
+                height: 100%;
+            }
+
+            // .line {
+            //     width: 2px;
+            //     height: 45px;
+            //     background: black;
+            // }
+        }
+    }
+
+
+    .music-sframe {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        position: absolute;
+        width: 270px;
+        height: 220px;
+        bottom: 30px;
+        left: 3%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;    
+        }
+
+        .play-button {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            z-index: 2;
+            // background: rgb(39, 39, 39);
+            background-image: linear-gradient(to right, #fc5c7c7f, #6a82fb66);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 2.5px 3px rgba(59, 59, 59, 0.37);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .press {
+                position: relative;
+                width: 35px;
+                height: 35px;
+                border: 1px solid #e53a5f;
+                border-radius: 50%;
+            }
+            svg {
+                cursor: pointer;
+                padding: 7.5px;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+            .ll1 {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                z-index: -1;
+                background-image: linear-gradient(to right, #ff6e7f, #bfe9ff);
+            }
+            .bg1 {
+                top: -20%;
+                left: -5%;
+            }
+            .bg2 {
+                bottom: -35%;
+                right: 35%;
+            }
+            .bg3 {
+                top: -10%;
+                right: -5%;
+            }
+        }
+    }
+
+}

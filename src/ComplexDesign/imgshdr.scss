@@ -1,0 +1,18 @@
+.img-shader-comp {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .three-canvas, canvas {
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        margin: 0;
+        // background: orange;
+        padding: 0;
+    }
+}
+
+
