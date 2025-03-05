@@ -21,6 +21,8 @@ import TreeLifeShader from './ComplexDesign/TreeLifeShader'
 import TransparentBox from './ComplexDesign/TransparentBox'
 import TreeTrasparentBox from './ComplexDesign/TreeTransparentBox'
 import ShaderRaycast from './ComplexDesign/ShaderRaycast'
+import GrokGenerate from './ComplexDesign/GrokGenerate'
+import ImageShaderPopup2 from './ComplexDesign/ImageShaderPopup2'
 // import AdvancedTreeScene from './ComplexDesign/TreeScene'
 // import SampleShader from './ComplexDesign/SampleShader'
 // import TextGLSL from './ComplexDesign/TextGLSL'
@@ -44,7 +46,8 @@ function App() {
         {/* <TransparentBox/> */}
         {/* <TreeTrasparentBox/> */}
 
-        <ShaderRaycast/>
+        {/* <ShaderRaycast/> */}
+        {/* <GrokGenerate/> */}
 
         {/* <BufferGeometries/> */}
         {/* <BufferGeometriesInterAction/> */}
@@ -55,6 +58,7 @@ function App() {
         {/* <ShaderShapes/> */}
         {/* <Music/> */}
         {/* <ImageShaderPopup/> */}
+        <ImageShaderPopup2/>
         {/* <ImageShader/> */}
         {/* <SampleShader/> */}
         {/* <TextGLSL/> */}
