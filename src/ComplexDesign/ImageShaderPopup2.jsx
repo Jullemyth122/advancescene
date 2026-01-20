@@ -42,6 +42,8 @@ const fragmentShader = `
 
         float cycleTime = 7.0;
         float t = fract(u_time / cycleTime);
+        float progress = 1.0 - abs(2.0 * t - 1.0);
+        progress = smoothstep(0.0, 1.0, progress); // additional smoothing if desired
 
         // Set the number of repetitions (columns and rows)
         // vec2 gridCount = vec2(5.0,5.0);
@@ -54,14 +56,14 @@ const fragmentShader = `
         // Gap size as a fraction of each cell
         float gap = 0.1;
 
-        // gap = (sin(u_time + 1.p) < 0.0)
-        //     ? (10. * sin(u_time + 1.p) * sin(u_time + 1.p))
-        //     : (1.0 - pow(-10. * sin(u_time + 1.p) + 10., 10.) / 10.);
-        // gap = smoothstep(0., t, 1.0 );
+        gap = (step(1.0,progress) < 0.0)
+            ? (1.0 * step(1.0,progress) * step(1.0,progress))
+            : (1.0 - pow(-1.0 * step(1.0,progress) + 1.0, 1.0) / 1.0);
+        // gap = smoothstep(0., step(1.0,progress), 1.0 );
 
         // Check if the current cellUV is inside the active (non-gap) region:
-        float insideX = step(gap, cellUV.x) * step(cellUV.x, 1.0 - gap);
-        float insideY = step(gap, cellUV.y) * step(cellUV.y, 1.0 - gap);
+        float insideX = smoothstep(gap, cellUV.x,progress) * smoothstep(cellUV.x, 1.0 - gap, progress);
+        float insideY = smoothstep(gap, cellUV.y,progress) * smoothstep(cellUV.y, 1.0 - gap, progress);
         float inside = insideX * insideY;  // 1.0 if inside, 0.0 if in the gap
 
         // Remap the UV so that the texture is sampled from the inner portion of the cell.
@@ -78,29 +80,6 @@ const fragmentShader = `
         vec4 img = mix(gapColor, gridSample, inside);
 
 
-        // vec4 img = texture2D(u_texture, st);
-
-        vec4 color = vec4(1.0);
-
-        
-        vec2 bl = smoothstep(vec2(1.0, 0.0),vec2(0.0, 0.1 ), st);
-        vec2 tr = smoothstep(vec2(0.0, 1.0),vec2(1., 1. - sin(u_time)), 1. - st);
-
-        // The multiplication of left*bottom will be similar to the logical AND.
-        // vec3 sides = vec3(left * bottom * right * top );
-
-        // vec3 sides = vec3(bl.x * tr.x * tr.y * bl.y);
-        // color = vec4( sides, 1.0 );
-
-        // Calculate the mask using bl and tr to make white transparent and black opaque
-        float mask = bl.x * tr.x * bl.y * tr.y;  // Intersection of the box sides
-
-        // Make the color transparent if it's white (mask == 1), opaque if it's black (mask == 0)
-        // color = vec4(img.rgb, mask);
-
-        // Use a continuous triangle wave for progress instead of a plateau
-        float progress = 1.0 - abs(2.0 * t - 1.0);
-        progress = smoothstep(0.0, 1.0, progress); // additional smoothing if desired
 
         // Adjust width if needed for an even gentler transition
         float width = 0.1;
@@ -197,7 +176,7 @@ export const Scene = () => {
         <ScrollControls>
             <ambientLight />
             <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
-                <planeGeometry args={[1,1,1,64]} />
+                <planeGeometry args={[1,1,128,128]} />
                     {/* <tubeGeometry args={[curve, 70, 5 ,50,false]}/> */}
                 <shaderMaterial
                     transparent={true}

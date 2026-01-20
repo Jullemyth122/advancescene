@@ -261,9 +261,7 @@ const ScrollingShader = () => {
                 <pointLight position={[10, 10, 10]} />
                 <Suspense fallback={null}>
                     <ScrollControls damping={1} pages={14} >
-                    {/* <Scroll> */}
                         <Scene />
-                    {/* </Scroll> */}
                     </ScrollControls>
                     {/* <OrbitControls/> */}
                 </Suspense>

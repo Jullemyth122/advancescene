@@ -149,7 +149,7 @@ const vertexShader = `
         vec4 modelPosition = modelMatrix * vec4(position, 1.0);
         // modelPosition.y += sin(modelPosition.x * 4.0 + u_time * 2.0) * 0.2;
         // modelPosition.x += sin(modelPosition.y * 4.0 + u_time * 2.0) * 0.2;
-        modelPosition.z += cos((modelPosition.y * 4.0 + modelPosition.x * 4.0) + u_time * 2.0) * 0.2;
+        // modelPosition.z += cos((modelPosition.y * 4.0 + modelPosition.x * 4.0) + u_time * 2.0) * 0.2;
 
         // Uncomment the code and hit the refresh button below for a more complex effect 🪄
         // modelPosition.y += sin(modelPosition.z * 6.0 + u_time * 2.0) * 0.1;
@@ -201,7 +201,7 @@ export const Scene = () => {
     <ScrollControls>
       <ambientLight />
       <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
-        <planeGeometry args={[1,1,1,64]} />
+        <planeGeometry args={[2,1,64,64]} />
         {/* <tubeGeometry args={[curve, 70, 5 ,50,false]}/> */}
         <shaderMaterial
           transparent={true}
@@ -236,10 +236,10 @@ const ImageShaderPopup = () => {
         className="three-canvas"
         flat
         gl={{ antialias: true }}
-        camera={{ position: [0, 0, 2] }}
+        camera={{ position: [0, 0, 1] }}
       >
         <Scene />
-        {/* <OrbitControls /> */}
+        <OrbitControls />
       </Canvas>
     </div>
   );

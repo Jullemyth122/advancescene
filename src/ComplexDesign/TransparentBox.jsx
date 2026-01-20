@@ -8,6 +8,7 @@ function OuterBox() {
         <mesh castShadow receiveShadow>
         <boxGeometry args={[3, 3, 3]} />
         <MeshTransmissionMaterial
+            color={0xffffff}
             resolution={512}         // Texture resolution for the transmission effect
             samples={1}              // Number of samples for the blur effect
             transmission={2}         // Fully transmissive material (like glass)
@@ -148,9 +149,9 @@ export default function TransparentBox() {
         <Canvas camera={{ position: [0, 0, 8] }} shadows>
             {/* <Environment preset="sunset" /> */}
 
-            <ambientLight intensity={0.2} color="#ffffff" />
+            <ambientLight intensity={0.5} color="#ffffff" />
 
-            <rectAreaLight
+            {/* <rectAreaLight
             width={10}
             height={10}
             color="#7e95fc" // Pink
@@ -183,7 +184,6 @@ export default function TransparentBox() {
             rotation={[0, 0, 0]} // Face backward (towards z=0)
             />
 
-            {/* Ceiling rectAreaLight as key light */}
             <rectAreaLight
                 width={10}
                 height={10}
@@ -191,13 +191,13 @@ export default function TransparentBox() {
                 intensity={2}
                 position={[0, 9.9, 0]}
                 rotation={[-Math.PI / 2, 0, 0]}
-            />
+            /> */}
 
             {/* Optional directional light for shadows */}
             <directionalLight
                 castShadow
                 intensity={0.5}
-                position={[0, 9, 0]}
+                position={[0, 9, 2]}
                 color="#ffffff"
                 shadow-mapSize-width={2048}
                 shadow-mapSize-height={2048}
@@ -215,6 +215,7 @@ export default function TransparentBox() {
             />
 
             {/* Rim light: Backlight for edge highlights */}
+            
             <spotLight
                 ref={rimLightRef}
                 intensity={0.3}
@@ -223,6 +224,7 @@ export default function TransparentBox() {
                 penumbra={1}
                 color="#ffffff"
             />
+
             {/* Point light for fill lighting */}
             {/* <pointLight
                 intensity={0.5}
@@ -232,7 +234,7 @@ export default function TransparentBox() {
                 
             <OuterBox />
             <InnerBox />
-            <CubeStage />
+            {/* <CubeStage /> */}
             
             <OrbitControls />
         </Canvas>

@@ -162,8 +162,8 @@ const Scene = () => {
     })
 
 
-    const textureL= useLoader(THREE.TextureLoader, "./img/me1.jpg");  // left image
-    const textureR = useLoader(THREE.TextureLoader, "./img/me2.jpg");  // right image
+    const textureL= useLoader(THREE.TextureLoader, "./img/m1.jpg");  // left image
+    const textureR = useLoader(THREE.TextureLoader, "./img/m2.jpg");  // right image
 
     
     const data = useMemo(() => ({
